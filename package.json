@@ -1,0 +1,25 @@
+{
+  "name": "blogpostsapi",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "seed:dev": "nodemon ./db/seed.js",
+    "start": "node index.js",
+    "start:dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/carlos-escamilla33/blogPostsApi.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/carlos-escamilla33/blogPostsApi/issues"
+  },
+  "homepage": "https://github.com/carlos-escamilla33/blogPostsApi#readme",
+  "dependencies": {
+    "express": "^4.17.2"
+  }
+}
