@@ -1,14 +1,14 @@
-const {client} = require("./index");
+const { client } = require("./client");
 
-const dropTables = () => {
+const dropTables = async () => {
     try {
         console.log("Starting to drop tables");
 
         await client.query(`
-            DROP TABLE IF EXITS post_comments
-            DROP TABLE IF EXITS posts
-            DROP TABLE IF EXITS users
-        `)
+            DROP TABLE IF EXISTS post_comments;
+            DROP TABLE IF EXISTS posts;
+            DROP TABLE IF EXISTS users;
+        `);
     }
     catch (error) {
         console.log("Error while dropping tables!");
@@ -46,3 +46,46 @@ const createTables = async () => {
         console.log("Error creating tables!")
     }
 }
+
+const createInitalUsers = async () => {
+    try {
+        console.log("Creating Initial Posts")
+        const createUsers = [
+            {
+                username: "carlos12",
+                password: "miamiheat06",
+                email: "MiamiHeatFan06@gmail.com"
+            },
+            {
+                username: "chad11",
+                password: "goldenStateWarriors15",
+                email: "WarriorsFan15@gmail.com"
+            },
+            {
+                username: "rico10",
+                password: "lakers4ever",
+                email: "LakersFan20@gmail.com"
+            },
+        ]
+        const users = await Promise.all(createUsers.map(createUser));
+
+        console.log(users)
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+const rebuildDB = async () => {
+    try {
+        client.connect();
+        await dropTables();
+        await createTables();
+        await createInitalUsers();
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+rebuildDB()
+    .catch(console.error)
+    .finally(() => client.end());
