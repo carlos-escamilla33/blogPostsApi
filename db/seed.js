@@ -1,14 +1,19 @@
+const {
+    createUser
+} = require("./")
 const { client } = require("./client");
 
 const dropTables = async () => {
     try {
-        console.log("Starting to drop tables");
+        console.log("Starting to drop tables...");
 
         await client.query(`
             DROP TABLE IF EXISTS post_comments;
             DROP TABLE IF EXISTS posts;
             DROP TABLE IF EXISTS users;
         `);
+
+        console.log("Finished Dropping Tables...")
     }
     catch (error) {
         console.log("Error while dropping tables!");
@@ -18,13 +23,14 @@ const dropTables = async () => {
 
 const createTables = async () => {
     try {
-        console.log("Starting to create tables...")
+        console.log("Starting to create tables...");
+            
         await client.query(`
             CREATE TABLE users(
                 id SERIAL PRIMARY KEY,
                 username VARCHAR(255) UNIQUE NOT NULL,
                 password VARCHAR(255) NOT NULL,
-                email VARCHAR(50) UNIQUE NOT NULL,
+                email VARCHAR(50) UNIQUE NOT NULL
             );
 
             CREATE TABLE posts(
@@ -39,8 +45,9 @@ const createTables = async () => {
                 id SERIAL PRIMARY KEY,
                 "postId" INTEGER REFERENCES posts(id),
                 content TEXT NOT NULL
-            )
-        `)
+            );
+        `);
+        console.log("Finished building tables...")
     }
     catch (error) {
         console.log("Error creating tables!")
@@ -49,7 +56,7 @@ const createTables = async () => {
 
 const createInitalUsers = async () => {
     try {
-        console.log("Creating Initial Posts")
+        console.log("Creating Initial Users...")
         const createUsers = [
             {
                 username: "carlos12",
