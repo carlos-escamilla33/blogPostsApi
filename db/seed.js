@@ -64,14 +64,14 @@ const createInitalUsers = async () => {
                 email: "MiamiHeatFan06@gmail.com"
             },
             {
-                username: "chad11",
+                username: "harrison11",
                 password: "goldenStateWarriors15",
                 email: "WarriorsFan15@gmail.com"
             },
             {
-                username: "rico10",
-                password: "lakers4ever",
-                email: "LakersFan20@gmail.com"
+                username: "hai10",
+                password: "bulls4ever",
+                email: "BullsFan20@gmail.com"
             },
         ]
         const users = await Promise.all(createUsers.map(createUser));
@@ -80,6 +80,10 @@ const createInitalUsers = async () => {
     } catch (error) {
         console.log(error)
     }
+}
+
+const createPosts = async () => {
+
 }
 
 const rebuildDB = async () => {
