@@ -41,7 +41,7 @@ const getUserById = async (id) => {
 
 const getUserByUsername = async (username) => {
     try {
-        const {rows: [user]} = await client.query(`
+        const { rows: [user] } = await client.query(`
             SELECT *
             FROM users
             WHERE username=$1
@@ -53,7 +53,7 @@ const getUserByUsername = async (username) => {
     }
 }
 
-const getUser = async ({username, password}) => {
+const getUser = async ({ username, password }) => {
     try {
         const user = await getUserByUsername(username);
         const passwordsMatch = await bcrypt.compare(password, user.password);
